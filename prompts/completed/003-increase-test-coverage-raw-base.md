@@ -1,7 +1,12 @@
 ---
-status: approved
+status: completed
+summary: Increased test coverage for raw package from 37.7% to 70.7% and base package from 61.5% to 91.5% by adding Ginkgo/Gomega tests for SchemaID, CommandObjectHandler, FetchTimestamp, InputSender, EventObject, EventID, Event, Cache.Clean, and ResultMessageHandler
+container: cqrs-003-increase-test-coverage-raw-base
+dark-factory-version: v0.67.6
 created: "2026-03-26T13:35:19Z"
 queued: "2026-03-26T13:35:19Z"
+started: "2026-03-26T16:43:37Z"
+completed: "2026-03-26T16:57:00Z"
 ---
 
 <summary>
