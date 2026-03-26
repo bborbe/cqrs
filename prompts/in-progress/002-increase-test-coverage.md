@@ -1,5 +1,10 @@
 ---
-status: draft
+status: executing
+container: cqrs-002-increase-test-coverage
+dark-factory-version: v0.67.3-dirty
+created: "2026-03-26T13:35:19Z"
+queued: "2026-03-26T13:35:19Z"
+started: "2026-03-26T13:35:34Z"
 ---
 
 <summary>
