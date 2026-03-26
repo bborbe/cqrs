@@ -1,11 +1,18 @@
 ---
-status: draft
+status: executing
+container: cqrs-001-fix-tests-and-dod
+dark-factory-version: v0.67.3-dirty
+created: "2026-03-26T13:14:44Z"
+queued: "2026-03-26T13:14:44Z"
+started: "2026-03-26T13:14:56Z"
 ---
 
 <summary>
 - All existing tests pass without failures
 - Code compiles cleanly with no errors
 - Linting and formatting pass
+- All generated mocks are up to date after `make generate`
+- No new warnings introduced
 - The full precommit check succeeds end-to-end
 - Definition of Done criteria are met for existing code
 </summary>
@@ -17,6 +24,7 @@ Ensure the project is in a healthy state: all tests pass, code compiles, linting
 <context>
 Read CLAUDE.md for project conventions and build commands.
 Read `docs/dod.md` for the Definition of Done criteria.
+Packages: `base/`, `iam/`, `cdb/`, `raw/`, `topic/`, `mocks/`.
 Run `make precommit` to identify any current failures.
 </context>
 
@@ -34,6 +42,7 @@ Run `make precommit` to identify any current failures.
 - Do NOT refactor code unrelated to fixing failures
 - Do NOT add new features — only fix what is broken
 - Minimize changes — fix the root cause, not symptoms
+- Do NOT reduce test coverage
 </constraints>
 
 <verification>
