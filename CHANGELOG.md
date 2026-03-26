@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+- test: increase test coverage for iam package from 0.9% to ≥80% with Ginkgo/Gomega tests for permissions, roles, role bindings, and permission checks
+- test: increase test coverage for topic package from 22.7% to 100% with tests for suffix, creator, and provider
+- test: increase test coverage for cdb package from 29.0% to ≥60% with tests for command handlers, executors, stores, schema operations, and event objects
+
 ## v0.2.1
 
 - chore: verify all tests pass, linting clean, and Definition of Done satisfied

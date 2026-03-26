@@ -1,5 +1,12 @@
 ---
-status: draft
+status: completed
+summary: Increased test coverage for iam (96.2%), topic (100%), and cdb (65.6%) packages using Ginkgo/Gomega tests covering permissions, roles, role bindings, command handlers, executors, stores, and event objects.
+container: cqrs-002-increase-test-coverage
+dark-factory-version: v0.67.6
+created: "2026-03-26T13:35:19Z"
+queued: "2026-03-26T13:35:19Z"
+started: "2026-03-26T16:36:17Z"
+completed: "2026-03-26T16:43:33Z"
 ---
 
 <summary>
