@@ -7,14 +7,14 @@ require (
 	github.com/bborbe/collection v1.20.7
 	github.com/bborbe/errors v1.5.8
 	github.com/bborbe/k8s v1.13.4
-	github.com/bborbe/kafka v1.22.8
+	github.com/bborbe/kafka v1.22.9
 	github.com/bborbe/kv v1.19.2
 	github.com/bborbe/log v1.6.8
 	github.com/bborbe/parse v1.10.8
-	github.com/bborbe/run v1.9.11
+	github.com/bborbe/run v1.9.12
 	github.com/bborbe/sentry v1.9.13
 	github.com/bborbe/strimzi v1.8.0
-	github.com/bborbe/time v1.25.3
+	github.com/bborbe/time v1.25.6
 	github.com/bborbe/validation v1.4.9
 	github.com/getsentry/sentry-go v0.44.1
 	github.com/golang/glog v1.2.5
@@ -100,7 +100,7 @@ require (
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
 	github.com/bazelbuild/buildtools v0.0.0-20250826111327-4006b543a694 // indirect
-	github.com/bborbe/http v1.26.5 // indirect
+	github.com/bborbe/http v1.26.7 // indirect
 	github.com/bborbe/math v1.3.5 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bkielbasa/cyclop v1.2.3 // indirect
