@@ -119,6 +119,30 @@ Each executor gets wrapped with `CommandObjectExecutorTxResultSender` which:
 
 **You never call ResultObjectSender manually.** The wrapping handles it.
 
+## Skipping Commands
+
+Return `cdb.ErrCommandObjectSkipped` when a command should be committed (offset advanced) but not processed further. The framework sends no result.
+
+```go
+// BAD — returns nil, silently swallows with no visibility
+return nil, nil, nil
+
+// BAD — returns error, framework sends failure result
+return nil, nil, err
+
+// GOOD — skips with reason, no retry, no result sent
+return nil, nil, errors.Wrapf(ctx, cdb.ErrCommandObjectSkipped, "reason: %v", err)
+```
+
+**Use for:**
+- Malformed data (MarshalInto fails)
+- Invalid data (Validate fails)
+- Duplicate command (already processed)
+- Not applicable (wrong state, already completed)
+- Filtered out (doesn't match handler criteria)
+
+**Don't use for:** Transient failures (network, disk, permission) — these should return a normal error so the framework retries.
+
 ## Command Expiration
 
 Commands older than `commandExpireDuration` are silently dropped. Default: varies per controller (typically 5min to 24h). Prevents processing stale commands after restarts.
