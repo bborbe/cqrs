@@ -123,11 +123,55 @@ type Result struct {
 }
 ```
 
-## Error Handling
+## SendResultEnabled
 
-- `ErrCommandObjectSkipped` — executor returns this to skip silently (no result sent)
-- `SendResultEnabled() == false` + no error → no result sent
-- `SendResultEnabled() == true` or error → result always sent
+Controls whether the CQRS framework publishes to the `-result` topic after command execution.
+
+### true (default, recommended)
+
+The framework publishes a result for every command:
+
+| Executor returns | Result published |
+|------------------|-----------------|
+| `eventID, event, nil` | Success with eventID + event data |
+| `nil, nil, err` | Failure with error message |
+| `nil, nil, ErrCommandObjectSkipped` | Nothing (silently dropped) |
+
+**Use this for all standard command executors.** The command sender can correlate via `RequestID` and know whether processing succeeded or failed.
+
+### false (manual result responsibility)
+
+The framework only publishes on **non-skipped errors**. On success, no result is sent:
+
+| Executor returns | Result published |
+|------------------|-----------------|
+| `eventID, event, nil` | **Nothing** — success is silent |
+| `nil, nil, err` | Failure with error message |
+| `nil, nil, ErrCommandObjectSkipped` | Nothing (silently dropped) |
+
+**Use this only when the executor confirms receipt through a different channel** (e.g., writing to an external system that the sender watches independently). If `false` and no alternative confirmation exists, the command sender has no way to know if the command was processed.
+
+**Warning**: In practice, all trading command executors use `true`. Setting `false` without an alternative confirmation mechanism creates a silent black hole for command senders.
+
+## ErrCommandObjectSkipped
+
+Wrapping an error with `ErrCommandObjectSkipped` tells the framework to silently drop the command. No result is published regardless of `SendResultEnabled`.
+
+```go
+return nil, nil, errors.Wrapf(ctx, cdb.ErrCommandObjectSkipped, "invalid payload: %v", err)
+```
+
+Use this for expected conditions like malformed payloads or validation failures where the command should not be retried and no result notification is needed.
+
+**Debugging note**: The framework logs only `"result returned skipped error => skip"` at V3 — the wrapped reason is not visible in the log output. Add explicit logging before returning `ErrCommandObjectSkipped` if the reason needs to be visible:
+
+```go
+glog.Warningf("skipping command: %v", err)
+return nil, nil, errors.Wrapf(ctx, cdb.ErrCommandObjectSkipped, "reason: %v", err)
+```
+
+## Other Error Handling
+
 - Context timeout → `ResultFor()` returns `Success: false, Message: "context canceled"`
 
 ## Example: Sync HTTP Handler
@@ -157,5 +201,7 @@ if result.Success {
 
 1. Use `RunCommandConsumerTx` (wrapping is automatic)
 2. Implement `CommandObjectExecutor` with `SendResultEnabled() = true`
-3. Result topic is created automatically by Kafka (auto-create) or deploy manually
-4. Consumer of results matches on `RequestID`
+3. Return `eventID` and `event` from `HandleCommand` on success — these are included in the result message
+4. Result topic is created automatically by Kafka (auto-create) or deploy manually
+5. Consumer of results matches on `RequestID`
+6. Add explicit Warning-level logging before returning `ErrCommandObjectSkipped` (framework swallows the reason)
