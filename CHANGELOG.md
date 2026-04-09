@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.3.4
+
+- Update bborbe/* dependencies (collection, errors, k8s, kafka, kv, log, parse, run, sentry, strimzi, time, validation)
+- Update Go toolchain to 1.26.2
+- Update transitive dependencies (opentelemetry, docker, containerd, prometheus, etc.)
+- Add vulnerability suppressions to osv-scanner and trivyignore
+- Improve Makefile: add .PHONY targets, vulncheck filtering, go mod tidy -e
+
 ## v0.3.3
 
 - Update go-git/go-git to v5.17.1 (fix security vulnerabilities)
