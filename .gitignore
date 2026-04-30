@@ -8,6 +8,7 @@
 /.update-logs/
 /CLAUDE.md
 /.dark-factory.lock
+/.dark-factory.log
 /prompts/log
 /vendor
 gha-creds-*.json
