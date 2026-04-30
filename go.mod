@@ -14,7 +14,7 @@ require (
 	github.com/bborbe/collection v1.20.11
 	github.com/bborbe/errors v1.5.11
 	github.com/bborbe/k8s v1.14.1
-	github.com/bborbe/kafka v1.22.10
+	github.com/bborbe/kafka v1.22.12
 	github.com/bborbe/kv v1.19.6
 	github.com/bborbe/log v1.6.12
 	github.com/bborbe/parse v1.10.11
