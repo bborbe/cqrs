@@ -1,5 +1,5 @@
 ---
-status: committing
+status: completed
 spec: [001-raw-result-broadcaster]
 summary: Ported cdb ResultBroadcaster and ResultChannelProviderForRequestID into the raw package as line-for-line mirrors, generated counterfeiter mocks (RawResultBroadcaster, RawResultProvider), and added Ginkgo+Gomega tests covering broadcaster list short-circuit, per-request-ID channel demux wait/broadcast/cancel, concurrent waiters, slow-reader contract, and post-return cleanup.
 container: cqrs-004-raw-result-broadcaster-and-provider
@@ -7,6 +7,7 @@ dark-factory-version: dev
 created: "2026-04-30T20:04:38Z"
 queued: "2026-04-30T20:10:26Z"
 started: "2026-04-30T20:37:05Z"
+completed: "2026-04-30T20:46:22Z"
 ---
 
 <summary>
