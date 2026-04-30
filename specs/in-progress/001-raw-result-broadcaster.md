@@ -1,9 +1,10 @@
 ---
-status: approved
+status: verifying
 tags:
     - dark-factory
     - spec
 approved: "2026-04-30T19:57:37Z"
+verifying: "2026-04-30T20:53:19Z"
 branch: dark-factory/raw-result-broadcaster
 ---
 
