@@ -1,11 +1,12 @@
 ---
-status: committing
+status: completed
 summary: Migrated from tools.go to tools.env + Makefile @version pattern; go.mod reduced from 505 lines to 97 lines, replace block eliminated, all make targets verified passing.
 container: cqrs-006-migrate-tools-go
 dark-factory-version: dev
 created: "2026-04-30T22:07:19Z"
 queued: "2026-04-30T22:07:19Z"
 started: "2026-04-30T22:07:20Z"
+completed: "2026-04-30T22:20:36Z"
 ---
 
 # Migrate from tools.go to tools.env + Makefile @version pattern
