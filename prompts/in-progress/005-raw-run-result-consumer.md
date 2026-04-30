@@ -1,8 +1,12 @@
 ---
-status: approved
+status: committing
 spec: [001-raw-result-broadcaster]
+summary: Ported cdb_run-result-consumer.go to raw package as raw_run-result-consumer.go with matching API signatures and added Ginkgo/Gomega test file
+container: cqrs-005-raw-run-result-consumer
+dark-factory-version: dev
 created: "2026-04-30T20:04:38Z"
 queued: "2026-04-30T20:10:26Z"
+started: "2026-04-30T20:46:23Z"
 ---
 
 <summary>
