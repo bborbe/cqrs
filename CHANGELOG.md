@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.5.2
+
+- bump IBM/sarama v1.48.0 → v1.50.1
+- bump bborbe/* deps (kafka, kv, time, run, errors, etc.)
+- bump k8s.io/* v0.36.0 → v0.36.1 and golang.org/x/* packages
+- drop standalone errcheck/gosec; configure via golangci-lint
+- add vulncheck ignore-list support in Makefile
+
 ## v0.5.1
 
 - chore: migrate to tools.env + Makefile @version pattern; remove tools.go and obsolete replace block; go.mod reduced from 505 to 97 lines
