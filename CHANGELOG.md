@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.5.4
+
+- Bump github.com/bborbe/kafka from v1.23.2 to v1.25.1
+- Bump k8s.io dependencies from v0.36.1 to v0.36.2
+- Bump github.com/getsentry/sentry-go from v0.46.2 to v0.47.0
+- Bump testing deps (ginkgo v2.32.0, gomega v1.42.1)
+
 ## v0.5.3
 
 - bump go 1.26.3 → 1.26.4
