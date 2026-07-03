@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+- feat: add `TopicPrefix` string type with `String()` method to `base` package (empty = no prefix)
+- feat: add `TopicPrefixFromBranch` bridge to `base` package preserving legacy `dev`→`develop`/`prod`→`master` mapping for Quant/trading topic names
+
 ## v0.5.4
 
 - Bump github.com/bborbe/kafka from v1.23.2 to v1.25.1
