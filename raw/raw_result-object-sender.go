@@ -32,7 +32,7 @@ func (r ResultObjectSenderFunc) Send(ctx context.Context, resultObject ResultObj
 
 func NewResultObjectSender(
 	syncProducer kafka.SyncProducer,
-	branch base.Branch,
+	prefix base.TopicPrefix,
 	logSamplerFactory log.SamplerFactory,
 ) ResultObjectSender {
 	logSampler := logSamplerFactory.Sampler()
@@ -46,7 +46,7 @@ func NewResultObjectSender(
 			return errors.Wrap(ctx, err, "serialize result failed")
 		}
 
-		topic := resultObject.SchemaID.ResultTopic(branch)
+		topic := resultObject.SchemaID.ResultTopic(prefix)
 		partition, offset, err := syncProducer.SendMessage(ctx, &sarama.ProducerMessage{
 			Topic: topic.String(),
 			Key:   sarama.StringEncoder(resultObject.Result.RequestID),

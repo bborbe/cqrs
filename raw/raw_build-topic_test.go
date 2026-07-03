@@ -23,36 +23,27 @@ var _ = Describe("BuildTopic", func() {
 		}
 	})
 
-	Context("dev branch maps to develop prefix", func() {
+	Context("empty prefix", func() {
 		BeforeEach(func() {
-			topic = raw.BuildTopic(schemaID, base.Branch("dev"), "input").String()
+			topic = raw.BuildTopic(schemaID, base.TopicPrefix(""), "input").String()
+		})
+		It("uses no leading dash", func() {
+			Expect(topic).To(Equal("raw-capitalcom-account-input"))
+		})
+	})
+
+	Context("develop prefix unchanged", func() {
+		BeforeEach(func() {
+			topic = raw.BuildTopic(schemaID, base.TopicPrefix("develop"), "input").String()
 		})
 		It("uses develop prefix in topic name", func() {
 			Expect(topic).To(Equal("develop-raw-capitalcom-account-input"))
 		})
 	})
 
-	Context("prod branch maps to master prefix", func() {
+	Context("master prefix unchanged", func() {
 		BeforeEach(func() {
-			topic = raw.BuildTopic(schemaID, base.Branch("prod"), "input").String()
-		})
-		It("uses master prefix in topic name", func() {
-			Expect(topic).To(Equal("master-raw-capitalcom-account-input"))
-		})
-	})
-
-	Context("develop branch unchanged", func() {
-		BeforeEach(func() {
-			topic = raw.BuildTopic(schemaID, base.Branch("develop"), "input").String()
-		})
-		It("uses develop prefix in topic name", func() {
-			Expect(topic).To(Equal("develop-raw-capitalcom-account-input"))
-		})
-	})
-
-	Context("master branch unchanged", func() {
-		BeforeEach(func() {
-			topic = raw.BuildTopic(schemaID, base.Branch("master"), "input").String()
+			topic = raw.BuildTopic(schemaID, base.TopicPrefix("master"), "input").String()
 		})
 		It("uses master prefix in topic name", func() {
 			Expect(topic).To(Equal("master-raw-capitalcom-account-input"))
@@ -61,7 +52,7 @@ var _ = Describe("BuildTopic", func() {
 
 	Context("feature branch unchanged", func() {
 		BeforeEach(func() {
-			topic = raw.BuildTopic(schemaID, base.Branch("feature/test"), "input").String()
+			topic = raw.BuildTopic(schemaID, base.TopicPrefix("feature/test"), "input").String()
 		})
 		It("uses feature branch name as prefix", func() {
 			Expect(topic).To(Equal("feature/test-raw-capitalcom-account-input"))
@@ -70,7 +61,7 @@ var _ = Describe("BuildTopic", func() {
 
 	Context("test branch unchanged", func() {
 		BeforeEach(func() {
-			topic = raw.BuildTopic(schemaID, base.Branch("test"), "input").String()
+			topic = raw.BuildTopic(schemaID, base.TopicPrefix("test"), "input").String()
 		})
 		It("uses test prefix in topic name", func() {
 			Expect(topic).To(Equal("test-raw-capitalcom-account-input"))
@@ -79,16 +70,30 @@ var _ = Describe("BuildTopic", func() {
 
 	Context("different suffixes", func() {
 		It("event suffix works", func() {
-			topic := raw.BuildTopic(schemaID, base.Branch("dev"), "event").String()
+			topic := raw.BuildTopic(schemaID, base.TopicPrefix("develop"), "event").String()
 			Expect(topic).To(Equal("develop-raw-capitalcom-account-event"))
 		})
 		It("result suffix works", func() {
-			topic := raw.BuildTopic(schemaID, base.Branch("prod"), "result").String()
+			topic := raw.BuildTopic(schemaID, base.TopicPrefix("master"), "result").String()
 			Expect(topic).To(Equal("master-raw-capitalcom-account-result"))
 		})
 		It("request suffix works", func() {
-			topic := raw.BuildTopic(schemaID, base.Branch("dev"), "request").String()
+			topic := raw.BuildTopic(schemaID, base.TopicPrefix("develop"), "request").String()
 			Expect(topic).To(Equal("develop-raw-capitalcom-account-request"))
+		})
+	})
+
+	// Note: TopicPrefixFromBranch("dev") → "develop" and TopicPrefixFromBranch("prod") → "master"
+	// mappings are regression-locked in base/base_topic-prefix_test.go.
+	// The tests below verify raw.BuildTopic behaves correctly with non-empty TopicPrefix values.
+	Context("non-empty prefixes produce expected format", func() {
+		It("develop prefix", func() {
+			topic := raw.BuildTopic(schemaID, base.TopicPrefix("develop"), "input").String()
+			Expect(topic).To(Equal("develop-raw-capitalcom-account-input"))
+		})
+		It("master prefix", func() {
+			topic := raw.BuildTopic(schemaID, base.TopicPrefix("master"), "input").String()
+			Expect(topic).To(Equal("master-raw-capitalcom-account-input"))
 		})
 	})
 })

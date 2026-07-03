@@ -23,7 +23,7 @@ var _ = Describe("Result Sender", func() {
 	var ctx context.Context
 	var err error
 	var syncProducer *kafkamocks.KafkaSyncProducer
-	var branch base.Branch
+	var branch base.TopicPrefix
 	BeforeEach(func() {
 		ctx = context.Background()
 		syncProducer = &kafkamocks.KafkaSyncProducer{}

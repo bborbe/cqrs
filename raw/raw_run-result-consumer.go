@@ -19,14 +19,14 @@ func RunResultConsumerDefault(
 	saramaClientProvider libkafka.SaramaClientProvider,
 	db libkv.DB,
 	schemaID SchemaID,
-	branch base.Branch,
+	prefix base.TopicPrefix,
 	resultHandler base.ResultHandler,
 ) run.Func {
 	return RunResultConsumer(
 		saramaClientProvider,
 		db,
 		schemaID,
-		branch,
+		prefix,
 		1,
 		run.NewTrigger(),
 		log.DefaultSamplerFactory,
@@ -38,7 +38,7 @@ func RunResultConsumer(
 	saramaClientProvider libkafka.SaramaClientProvider,
 	db libkv.DB,
 	schemaID SchemaID,
-	branch base.Branch,
+	prefix base.TopicPrefix,
 	batchSize libkafka.BatchSize,
 	trigger run.Fire,
 	logSamplerFactory log.SamplerFactory,
@@ -47,7 +47,7 @@ func RunResultConsumer(
 	return func(ctx context.Context) error {
 		return libkafka.NewOffsetConsumerHighwaterMarksBatchWithProvider(
 			saramaClientProvider,
-			schemaID.ResultTopic(branch),
+			schemaID.ResultTopic(prefix),
 			libkafka.NewStoreOffsetManager(
 				libkafka.NewOffsetStore(db),
 				libkafka.OffsetOldest,

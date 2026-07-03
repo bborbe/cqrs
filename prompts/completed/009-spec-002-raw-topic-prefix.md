@@ -1,8 +1,13 @@
 ---
-status: approved
+status: completed
 spec: ["002"]
+summary: Replaced base.Branch with base.TopicPrefix throughout raw/ package; removed internal dev/prod switch from BuildTopic; empty prefix yields raw-<group>-<kind>-<suffix>; mocks regenerated
+execution_id: cqrs-exec-009-spec-002-raw-topic-prefix
+dark-factory-version: v0.191.0
 created: "2026-07-03T15:03:45Z"
 queued: "2026-07-03T15:15:45Z"
+started: "2026-07-03T15:21:58Z"
+completed: "2026-07-03T15:26:06Z"
 ---
 
 <summary>

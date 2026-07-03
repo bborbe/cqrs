@@ -23,18 +23,18 @@ type InputSender interface {
 
 func NewInputSender(
 	syncProducer kafka.SyncProducer,
-	branch base.Branch,
+	prefix base.TopicPrefix,
 	logSamplerFactory log.SamplerFactory,
 ) InputSender {
 	return &inputSender{
 		syncProducer: syncProducer,
-		branch:       branch,
+		prefix:       prefix,
 		logSampler:   logSamplerFactory.Sampler(),
 	}
 }
 
 type inputSender struct {
-	branch       base.Branch
+	prefix       base.TopicPrefix
 	syncProducer kafka.SyncProducer
 	logSampler   log.Sampler
 }
@@ -44,7 +44,7 @@ func (i *inputSender) Send(ctx context.Context, eventObject EventObject) error {
 	if err != nil {
 		return errors.Wrapf(ctx, err, "marshal failed")
 	}
-	topic := eventObject.SchemaID.InputTopic(i.branch)
+	topic := eventObject.SchemaID.InputTopic(i.prefix)
 	partition, offset, err := i.syncProducer.SendMessage(ctx, &sarama.ProducerMessage{
 		Topic: topic.String(),
 		Key:   sarama.ByteEncoder(eventObject.ID.Bytes()),

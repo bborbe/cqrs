@@ -19,7 +19,7 @@ var _ = Describe("RunResultConsumer", func() {
 	var saramaClientProvider *kafkamocks.KafkaSaramaClientProvider
 	var db *kvmocks.DB
 	var schemaID raw.SchemaID
-	var branch base.Branch
+	var branch base.TopicPrefix
 	var resultHandler *libmocks.BaseResultHandler
 
 	BeforeEach(func() {

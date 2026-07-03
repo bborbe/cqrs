@@ -27,19 +27,19 @@ type CommandObjectSender interface {
 
 func NewCommandObjectSender(
 	syncProducer libkafka.SyncProducer,
-	branch base.Branch,
+	prefix base.TopicPrefix,
 	logSamplerFactory log.SamplerFactory,
 ) CommandObjectSender {
 	return &commandObjectSender{
 		syncProducer: syncProducer,
 		logSampler:   logSamplerFactory.Sampler(),
-		branch:       branch,
+		prefix:       prefix,
 	}
 
 }
 
 type commandObjectSender struct {
-	branch       base.Branch
+	prefix       base.TopicPrefix
 	logSampler   log.Sampler
 	syncProducer libkafka.SyncProducer
 }
@@ -101,7 +101,7 @@ func (c commandObjectSender) createMessage(
 	if err != nil {
 		return nil, errors.Wrap(ctx, err, "serialize command failed")
 	}
-	topic := commandObject.SchemaID.CommandTopic(c.branch)
+	topic := commandObject.SchemaID.CommandTopic(c.prefix)
 	msg := &sarama.ProducerMessage{
 		Topic: topic.String(),
 		Key:   sarama.StringEncoder(commandObject.Command.RequestID.String()),

@@ -55,14 +55,18 @@ var _ = Describe("SchemaID extra", func() {
 
 	Context("SchemaID.InputTopic", func() {
 		It("returns correct topic", func() {
-			topic := schemaID.InputTopic(base.Branch("test"))
+			topic := schemaID.InputTopic(base.TopicPrefix("test"))
 			Expect(topic.String()).To(Equal("test-raw-mygroup-mykind-input"))
+		})
+		It("empty prefix returns no leading dash", func() {
+			topic := schemaID.InputTopic(base.TopicPrefix(""))
+			Expect(topic.String()).To(Equal("raw-mygroup-mykind-input"))
 		})
 	})
 
 	Context("SchemaID.EventTopic", func() {
 		It("returns correct topic", func() {
-			topic := schemaID.EventTopic(base.Branch("test"))
+			topic := schemaID.EventTopic(base.TopicPrefix("test"))
 			Expect(topic.String()).To(Equal("test-raw-mygroup-mykind-event"))
 		})
 	})

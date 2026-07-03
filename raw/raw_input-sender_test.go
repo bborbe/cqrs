@@ -22,7 +22,7 @@ var _ = Describe("InputSender", func() {
 	var err error
 	var inputSender raw.InputSender
 	var syncProducer *kafkamocks.KafkaSyncProducer
-	var branch base.Branch
+	var branch base.TopicPrefix
 	var eventObject raw.EventObject
 
 	BeforeEach(func() {

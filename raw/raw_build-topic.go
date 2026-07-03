@@ -12,19 +12,16 @@ import (
 	"github.com/bborbe/cqrs/base"
 )
 
-// BuildTopic constructs a Kafka topic name from schema ID, branch, and suffix.
-func BuildTopic(schemaID SchemaID, branch base.Branch, suffix string) libkafka.Topic {
-	// Map new branch names to legacy Kafka topic prefixes
-	// Kafka topics cannot be renamed, so we maintain old naming
-	topicPrefix := string(branch)
-	switch branch {
-	case "dev":
-		topicPrefix = "develop"
-	case "prod":
-		topicPrefix = "master"
+// BuildTopic constructs a Kafka topic name from schema ID, prefix, and suffix.
+// An empty prefix yields "raw-<group>-<kind>-<suffix>" with no leading dash;
+// a non-empty prefix yields "<prefix>-raw-<group>-<kind>-<suffix>".
+func BuildTopic(schemaID SchemaID, prefix base.TopicPrefix, suffix string) libkafka.Topic {
+	if prefix == "" {
+		return libkafka.Topic(
+			fmt.Sprintf("raw-%s-%s-%s", schemaID.Group, schemaID.Kind, suffix),
+		)
 	}
-
 	return libkafka.Topic(
-		fmt.Sprintf("%s-raw-%s-%s-%s", topicPrefix, schemaID.Group, schemaID.Kind, suffix),
+		fmt.Sprintf("%s-raw-%s-%s-%s", prefix, schemaID.Group, schemaID.Kind, suffix),
 	)
 }

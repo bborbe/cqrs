@@ -23,7 +23,7 @@ var _ = Describe("CommandObjectSender SendCommandObjects", func() {
 	var ctx context.Context
 	var err error
 	var syncProducer *kafkamocks.KafkaSyncProducer
-	var branch base.Branch
+	var branch base.TopicPrefix
 
 	BeforeEach(func() {
 		ctx = context.Background()
