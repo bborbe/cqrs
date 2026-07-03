@@ -104,3 +104,15 @@ Rationale: prompt 1 lands the shared type both frameworks depend on, so 2 and 3 
 ## Do-Nothing Option
 
 If we skip this, cqrs keeps forcing a branch-derived prefix onto every topic. The Octopus agent platform cannot get its required unprefixed `agent-task-v1-*` topics on per-stage clusters with auto-create disabled, so that work stays blocked. The alternative — teaching each downstream service to strip or rewrite topic names outside cqrs — would fragment topic naming across repos and defeat the point of a shared CQRS library. Not acceptable: the block is concrete and already sitting in front of the agent-platform migration.
+
+## Verification Result
+
+**Verified:** 2026-07-03T15:41:34Z (HEAD 85c302e)
+**Binary:** dark-factory v0.191.0 (installed; cqrs is not dark-factory itself); tests run with GOPATH=~/go
+**Scenario:** none — compile-time library API refactor; ACs proved by greps, `go doc`, and Ginkgo unit tests in `make precommit`.
+**Evidence:**
+- `type TopicPrefix` at base/base_topic-prefix.go:10; `go doc` prints non-empty comment; `TopicPrefixFromBranch` test asserts dev→develop, prod→master, feature/x→feature/x, ""→"".
+- cdb: `CommandTopic("")`→`agent-task-v1-request`; `develop-/master-...-v1-{event,result,request,history}` legacy strings assert. raw: empty→`raw-<grp>-<kind>-input` (no leading dash), `develop-raw-...` legacy strings assert.
+- `grep -c 'case "dev"'` = 0 in both builders, ≥1 in base; `grep -rln 'base.Branch' cdb/ raw/` empty; docs+CHANGELOG(Unreleased BREAKING) reference TopicPrefix.
+- `go test ./base/... ./cdb/... ./raw/...` all ok; `make precommit` exit 0; `git status --porcelain` clean (go generate idempotent).
+**Verdict:** PASS
