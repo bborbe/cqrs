@@ -29,25 +29,28 @@ schemaID := raw.SchemaID{
 
 ## Topic Derivation
 
-Each SchemaID derives four topics:
+Each SchemaID derives four topics. The `prefix` parameter is of type `base.TopicPrefix`; an empty `base.TopicPrefix("")` yields a topic name with no prefix segment and no leading dash, e.g. `CommandTopic("")` → `"core-backtest-v1-request"`.
 
 ```go
-schemaID.CommandTopic(branch) // → "{branch}-core-backtest-v1-request"
-schemaID.EventTopic(branch)   // → "{branch}-core-backtest-v1-event"
-schemaID.ResultTopic(branch)  // → "{branch}-core-backtest-v1-result"
-schemaID.HistoryTopic(branch) // → "{branch}-core-backtest-v1-history"
+schemaID.CommandTopic(prefix) // → "{prefix}-core-backtest-v1-request"
+schemaID.EventTopic(prefix)   // → "{prefix}-core-backtest-v1-event"
+schemaID.ResultTopic(prefix)  // → "{prefix}-core-backtest-v1-result"
+schemaID.HistoryTopic(prefix) // → "{prefix}-core-backtest-v1-history"
 ```
 
 Note: `CommandTopic` uses suffix `request` (not `command`) in the actual topic name.
 
-### Branch Mapping
+### TopicPrefix and TopicPrefixFromBranch
 
-```go
-// BuildTopic maps branch names to legacy prefixes:
+`base.TopicPrefix` is chosen by the top-level caller; empty means no prefix at all. The topic builders no longer derive a prefix from the branch; the legacy mapping now lives only in `base.TopicPrefixFromBranch(branch)`:
+
+```
 "dev"  → "develop"
 "prod" → "master"
-// Others pass through as-is
+// every other value (including "") passes through verbatim
 ```
+
+Callers holding a git branch pass it through `base.TopicPrefixFromBranch` to keep historical topic names.
 
 ## Topic Cleanup Policies
 
@@ -65,7 +68,7 @@ Exception: `core-tick` event topics use `compact,delete` with 7-day retention.
 Creates Strimzi `KafkaTopic` K8s manifests for all four topics:
 
 ```go
-creator := cdb.NewTopicsCreator(topicCreator, branch)
+creator := cdb.NewTopicsCreator(topicCreator, prefix)
 topics := creator.CreateTopics(schemaID) // returns 4 KafkaTopic objects
 ```
 

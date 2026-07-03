@@ -1,7 +1,13 @@
 ---
+status: completed
 spec: ["002"]
-status: draft
+summary: Updated docs/schema-and-topics.md (Topic Derivation section with base.TopicPrefix examples, replaced Branch Mapping with TopicPrefix and TopicPrefixFromBranch subsection, updated TopicsCreator constructor arg) and CHANGELOG.md (added BREAKING entry under existing Unreleased section)
+execution_id: cqrs-exec-010-spec-002-docs-changelog
+dark-factory-version: v0.191.0
 created: "2026-07-03T15:03:45Z"
+queued: "2026-07-03T15:31:57Z"
+started: "2026-07-03T15:31:58Z"
+completed: "2026-07-03T15:33:42Z"
 ---
 
 <summary>

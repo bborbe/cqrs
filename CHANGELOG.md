@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - feat: add `TopicPrefixFromBranch` bridge to `base` package preserving legacy `dev`→`develop`/`prod`→`master` mapping for Quant/trading topic names
 - refactor: replace `base.Branch` with `base.TopicPrefix` throughout `cdb/` package; empty prefix yields unprefixed topic names for Octopus, non-empty prefix preserves legacy Quant/trading topic names
 - refactor: replace `base.Branch` with `base.TopicPrefix` throughout `raw/` package; empty prefix yields `raw-<group>-<kind>-<suffix>` with no leading dash, non-empty prefix preserves legacy Quant/trading topic names; remove internal dev/prod branch switch from `raw.BuildTopic`
+- BREAKING: cdb/raw topic builders and SchemaID topic methods now take an explicit `base.TopicPrefix` instead of `base.Branch`; an empty `TopicPrefix` produces an unprefixed topic name (no leading dash). Use `base.TopicPrefixFromBranch(branch)` to preserve the legacy `dev`→`develop` / `prod`→`master` names.
 
 ## v0.5.4
 
