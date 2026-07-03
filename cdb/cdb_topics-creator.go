@@ -24,18 +24,18 @@ type TopicsCreator interface {
 
 func NewTopicsCreator(
 	topicCreator topic.TopicCreator,
-	branch base.Branch,
+	prefix base.TopicPrefix,
 ) TopicsCreator {
 	return &topicsCreator{
 		topicCreator: topicCreator,
-		branch:       branch,
+		prefix:       prefix,
 		retention:    12 * libtime.Hour,
 	}
 }
 
 type topicsCreator struct {
 	topicCreator topic.TopicCreator
-	branch       base.Branch
+	prefix       base.TopicPrefix
 	retention    libtime.Duration
 }
 
@@ -104,17 +104,17 @@ func (c *topicsCreator) CreateEventTopic(schemaID SchemaID, suffixes ...string) 
 }
 
 func (c *topicsCreator) eventTopic(schemaID SchemaID, suffixes ...string) libkafka.Topic {
-	return topic.AddSuffix(schemaID.EventTopic(c.branch), suffixes...)
+	return topic.AddSuffix(schemaID.EventTopic(c.prefix), suffixes...)
 }
 
 func (c *topicsCreator) historyTopic(schemaID SchemaID, suffixes ...string) libkafka.Topic {
-	return topic.AddSuffix(schemaID.HistoryTopic(c.branch), suffixes...)
+	return topic.AddSuffix(schemaID.HistoryTopic(c.prefix), suffixes...)
 }
 
 func (c *topicsCreator) commandTopic(schemaID SchemaID, suffixes ...string) libkafka.Topic {
-	return topic.AddSuffix(schemaID.CommandTopic(c.branch), suffixes...)
+	return topic.AddSuffix(schemaID.CommandTopic(c.prefix), suffixes...)
 }
 
 func (c *topicsCreator) resultTopic(schemaID SchemaID, suffixes ...string) libkafka.Topic {
-	return topic.AddSuffix(schemaID.ResultTopic(c.branch), suffixes...)
+	return topic.AddSuffix(schemaID.ResultTopic(c.prefix), suffixes...)
 }

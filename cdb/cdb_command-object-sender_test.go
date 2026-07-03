@@ -23,14 +23,14 @@ var _ = Describe("Command Sender", func() {
 	var ctx context.Context
 	var err error
 	var syncProducer *kafkamocks.KafkaSyncProducer
-	var branch base.Branch
+	var prefix base.TopicPrefix
 	BeforeEach(func() {
 		ctx = context.Background()
 		syncProducer = &kafkamocks.KafkaSyncProducer{}
-		branch = "test"
+		prefix = "test"
 		commandObjectSender = cdb.NewCommandObjectSender(
 			syncProducer,
-			branch,
+			prefix,
 			log.DefaultSamplerFactory,
 		)
 		commandObject = cdb.CommandObject{

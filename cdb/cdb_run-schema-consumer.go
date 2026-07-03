@@ -18,14 +18,14 @@ import (
 func RunSchemaConsumer(
 	saramaClient libkafka.SaramaClient,
 	db libkv.DB,
-	branch base.Branch,
+	prefix base.TopicPrefix,
 	batchSize libkafka.BatchSize,
 	trigger run.Fire,
 ) run.Func {
 	return func(ctx context.Context) error {
 		return libkafka.NewOffsetConsumerHighwaterMarksBatch(
 			saramaClient,
-			SchemaIDV1.EventTopic(branch),
+			SchemaIDV1.EventTopic(prefix),
 			libkafka.NewStoreOffsetManager(
 				libkafka.NewOffsetStore(db),
 				libkafka.OffsetOldest,

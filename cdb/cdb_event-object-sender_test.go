@@ -22,12 +22,12 @@ var _ = Describe("EventObjectSender", func() {
 	var err error
 	var eventObjectSender cdb.EventObjectSender
 	var jsonSender *kafkamocks.KafkaJSONSender
-	var branch base.Branch
+	var prefix base.TopicPrefix
 	var eventObject cdb.EventObject
 	BeforeEach(func() {
 		ctx = context.Background()
 
-		branch = "test"
+		prefix = "test"
 		eventObject = cdb.EventObject{
 			ID:    "1337",
 			Event: base.Event{},
@@ -39,7 +39,7 @@ var _ = Describe("EventObjectSender", func() {
 		}
 
 		jsonSender = &kafkamocks.KafkaJSONSender{}
-		eventObjectSender = cdb.NewEventObjectSender(jsonSender, branch, log.DefaultSamplerFactory)
+		eventObjectSender = cdb.NewEventObjectSender(jsonSender, prefix, log.DefaultSamplerFactory)
 	})
 	Context("SendUpdate", func() {
 		JustBeforeEach(func() {

@@ -20,7 +20,7 @@ func RunCommandConsumerDefault(
 	syncProducer libkafka.SyncProducer,
 	kafkaGroup libkafka.Group,
 	schemaID SchemaID,
-	branch base.Branch,
+	prefix base.TopicPrefix,
 	ignoreUnsupported bool,
 	commandObjectExecutors CommandObjectExecutors,
 	options ...func(*libkafka.ConsumerOptions),
@@ -31,7 +31,7 @@ func RunCommandConsumerDefault(
 		schemaID,
 		kafkaGroup,
 		libkafka.BatchSize(1),
-		branch,
+		prefix,
 		ignoreUnsupported,
 		5*time.Minute,
 		run.NewTrigger(),
@@ -46,7 +46,7 @@ func RunCommandConsumer(
 	schemaID SchemaID,
 	kafkaGroup libkafka.Group,
 	batchSize libkafka.BatchSize,
-	branch base.Branch,
+	prefix base.TopicPrefix,
 	ignoreUnsupported bool,
 	commandExpireDuration time.Duration,
 	trigger run.Trigger,
@@ -60,7 +60,7 @@ func RunCommandConsumer(
 		}
 		return libkafka.NewOffsetConsumerHighwaterMarksBatch(
 			saramaClient,
-			schemaID.CommandTopic(branch),
+			schemaID.CommandTopic(prefix),
 			libkafka.NewSaramaOffsetManager(
 				saramaClient,
 				kafkaGroup,
@@ -77,7 +77,7 @@ func RunCommandConsumer(
 								WrapCommandObjectExecutors(
 									NewResultObjectSender(
 										syncProducer,
-										branch,
+										prefix,
 										log.DefaultSamplerFactory,
 									),
 									commandObjectExecutors,

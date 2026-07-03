@@ -92,20 +92,20 @@ func (s SchemaID) Equal(id SchemaID) bool {
 	return s.Group == id.Group && s.Version == id.Version && s.Kind == id.Kind
 }
 
-func (s SchemaID) ResultTopic(branch base.Branch) libkafka.Topic {
-	return BuildTopic(s, branch, "result")
+func (s SchemaID) ResultTopic(prefix base.TopicPrefix) libkafka.Topic {
+	return BuildTopic(s, prefix, "result")
 }
 
-func (s SchemaID) CommandTopic(branch base.Branch) libkafka.Topic {
-	return BuildTopic(s, branch, "request")
+func (s SchemaID) CommandTopic(prefix base.TopicPrefix) libkafka.Topic {
+	return BuildTopic(s, prefix, "request")
 }
 
-func (s SchemaID) EventTopic(branch base.Branch) libkafka.Topic {
-	return BuildTopic(s, branch, "event")
+func (s SchemaID) EventTopic(prefix base.TopicPrefix) libkafka.Topic {
+	return BuildTopic(s, prefix, "event")
 }
 
-func (s SchemaID) HistoryTopic(branch base.Branch) libkafka.Topic {
-	return BuildTopic(s, branch, "history")
+func (s SchemaID) HistoryTopic(prefix base.TopicPrefix) libkafka.Topic {
+	return BuildTopic(s, prefix, "history")
 }
 
 var validateGroupRegex = regexp.MustCompile(`^[a-z][a-z0-9]*$`)

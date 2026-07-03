@@ -29,7 +29,7 @@ var _ = Describe("SchemaID topics and extras", func() {
 
 	Describe("ResultTopic", func() {
 		It("builds topic with result suffix", func() {
-			t := schemaID.ResultTopic(base.Branch("dev"))
+			t := schemaID.ResultTopic(base.TopicPrefix("dev"))
 			Expect(t.String()).To(ContainSubstring("result"))
 			Expect(t.String()).To(ContainSubstring("mygroup"))
 		})
@@ -37,22 +37,35 @@ var _ = Describe("SchemaID topics and extras", func() {
 
 	Describe("CommandTopic", func() {
 		It("builds topic with request suffix", func() {
-			t := schemaID.CommandTopic(base.Branch("dev"))
+			t := schemaID.CommandTopic(base.TopicPrefix("dev"))
 			Expect(t.String()).To(ContainSubstring("request"))
 		})
 	})
 
 	Describe("EventTopic", func() {
 		It("builds topic with event suffix", func() {
-			t := schemaID.EventTopic(base.Branch("dev"))
+			t := schemaID.EventTopic(base.TopicPrefix("dev"))
 			Expect(t.String()).To(ContainSubstring("event"))
 		})
 	})
 
 	Describe("HistoryTopic", func() {
 		It("builds topic with history suffix", func() {
-			t := schemaID.HistoryTopic(base.Branch("dev"))
+			t := schemaID.HistoryTopic(base.TopicPrefix("dev"))
 			Expect(t.String()).To(ContainSubstring("history"))
+		})
+	})
+
+	Describe("CommandTopic with empty prefix", func() {
+		It("yields no leading dash", func() {
+			t := cdb.SchemaID{
+				Group:   "agent",
+				Kind:    "task",
+				Version: "v1",
+			}.CommandTopic(
+				base.TopicPrefix(""),
+			)
+			Expect(t.String()).To(Equal("agent-task-v1-request"))
 		})
 	})
 

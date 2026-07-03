@@ -1,9 +1,10 @@
 ---
-status: approved
+status: verifying
 tags:
     - dark-factory
     - spec
 approved: "2026-07-03T14:50:16Z"
+verifying: "2026-07-03T15:15:08Z"
 branch: dark-factory/topic-prefix-type
 ---
 

@@ -14,7 +14,6 @@ import (
 
 var _ = Describe("BuildTopic", func() {
 	var schemaID cdb.SchemaID
-	var topic string
 
 	BeforeEach(func() {
 		schemaID = cdb.SchemaID{
@@ -24,75 +23,56 @@ var _ = Describe("BuildTopic", func() {
 		}
 	})
 
-	Context("dev branch maps to develop prefix", func() {
-		BeforeEach(func() {
-			topic = cdb.BuildTopic(schemaID, base.Branch("dev"), "event").String()
+	Context("empty prefix", func() {
+		It("yields no leading dash", func() {
+			topic := cdb.BuildTopic(schemaID, base.TopicPrefix(""), "event").String()
+			Expect(topic).To(Equal("core-account-v1-event"))
 		})
+	})
+
+	Context("develop prefix", func() {
 		It("uses develop prefix in topic name", func() {
+			topic := cdb.BuildTopic(schemaID, base.TopicPrefix("develop"), "event").String()
 			Expect(topic).To(Equal("develop-core-account-v1-event"))
 		})
 	})
 
-	Context("prod branch maps to master prefix", func() {
-		BeforeEach(func() {
-			topic = cdb.BuildTopic(schemaID, base.Branch("prod"), "event").String()
-		})
+	Context("master prefix", func() {
 		It("uses master prefix in topic name", func() {
+			topic := cdb.BuildTopic(schemaID, base.TopicPrefix("master"), "event").String()
 			Expect(topic).To(Equal("master-core-account-v1-event"))
 		})
 	})
 
-	Context("develop branch unchanged", func() {
-		BeforeEach(func() {
-			topic = cdb.BuildTopic(schemaID, base.Branch("develop"), "event").String()
-		})
-		It("uses develop prefix in topic name", func() {
-			Expect(topic).To(Equal("develop-core-account-v1-event"))
-		})
-	})
-
-	Context("master branch unchanged", func() {
-		BeforeEach(func() {
-			topic = cdb.BuildTopic(schemaID, base.Branch("master"), "event").String()
-		})
-		It("uses master prefix in topic name", func() {
-			Expect(topic).To(Equal("master-core-account-v1-event"))
-		})
-	})
-
-	Context("feature branch unchanged", func() {
-		BeforeEach(func() {
-			topic = cdb.BuildTopic(schemaID, base.Branch("feature/test"), "event").String()
-		})
+	Context("feature branch prefix", func() {
 		It("uses feature branch name as prefix", func() {
+			topic := cdb.BuildTopic(schemaID, base.TopicPrefix("feature/test"), "event").String()
 			Expect(topic).To(Equal("feature/test-core-account-v1-event"))
 		})
 	})
 
-	Context("test branch unchanged", func() {
-		BeforeEach(func() {
-			topic = cdb.BuildTopic(schemaID, base.Branch("test"), "event").String()
-		})
+	Context("test prefix", func() {
 		It("uses test prefix in topic name", func() {
+			topic := cdb.BuildTopic(schemaID, base.TopicPrefix("test"), "event").String()
 			Expect(topic).To(Equal("test-core-account-v1-event"))
 		})
 	})
 
-	Context("different suffixes", func() {
+	Context("different suffixes with develop prefix", func() {
 		It("event suffix works", func() {
-			topic := cdb.BuildTopic(schemaID, base.Branch("dev"), "event").String()
+			topic := cdb.BuildTopic(schemaID, base.TopicPrefix("develop"), "event").String()
 			Expect(topic).To(Equal("develop-core-account-v1-event"))
 		})
 		It("result suffix works", func() {
-			topic := cdb.BuildTopic(schemaID, base.Branch("prod"), "result").String()
+			topic := cdb.BuildTopic(schemaID, base.TopicPrefix("master"), "result").String()
 			Expect(topic).To(Equal("master-core-account-v1-result"))
 		})
 		It("request suffix works", func() {
-			topic := cdb.BuildTopic(schemaID, base.Branch("dev"), "request").String()
+			topic := cdb.BuildTopic(schemaID, base.TopicPrefix("develop"), "request").String()
 			Expect(topic).To(Equal("develop-core-account-v1-request"))
 		})
 		It("history suffix works", func() {
-			topic := cdb.BuildTopic(schemaID, base.Branch("prod"), "history").String()
+			topic := cdb.BuildTopic(schemaID, base.TopicPrefix("master"), "history").String()
 			Expect(topic).To(Equal("master-core-account-v1-history"))
 		})
 	})

@@ -17,13 +17,13 @@ func RunResultConsumerLog(
 	saramaClientProvider libkafka.SaramaClientProvider,
 	db libkv.DB,
 	schemaID SchemaID,
-	branch base.Branch,
+	prefix base.TopicPrefix,
 ) run.Func {
 	return RunResultConsumerTx(
 		saramaClientProvider,
 		db,
 		schemaID,
-		branch,
+		prefix,
 		100,
 		run.NewTrigger(),
 		log.DefaultSamplerFactory,

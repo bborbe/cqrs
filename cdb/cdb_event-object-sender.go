@@ -48,12 +48,12 @@ func (e *eventObjectSenderFunc) SendDelete(ctx context.Context, event EventObjec
 
 func NewEventObjectSender(
 	jsonSender kafka.JsonSender,
-	branch base.Branch,
+	prefix base.TopicPrefix,
 	logSamplerFactory log.SamplerFactory,
 ) EventObjectSender {
 	return &eventObjectSender{
 		jsonSender: jsonSender,
-		branch:     branch,
+		prefix:     prefix,
 		logSampler: logSamplerFactory.Sampler(),
 	}
 }
@@ -61,14 +61,14 @@ func NewEventObjectSender(
 type eventObjectSender struct {
 	logSampler log.Sampler
 	jsonSender kafka.JsonSender
-	branch     base.Branch
+	prefix     base.TopicPrefix
 }
 
 func (e *eventObjectSender) SendUpdate(ctx context.Context, eventObject EventObject) error {
 	if err := eventObject.Validate(ctx); err != nil {
 		return errors.Wrap(ctx, err, "validate event failed")
 	}
-	if err := e.jsonSender.SendUpdate(ctx, eventObject.SchemaID.EventTopic(e.branch), eventObject.ID, eventObject.Event); err != nil {
+	if err := e.jsonSender.SendUpdate(ctx, eventObject.SchemaID.EventTopic(e.prefix), eventObject.ID, eventObject.Event); err != nil {
 		return errors.Wrapf(ctx, err, "send update failed")
 	}
 	return nil
@@ -78,7 +78,7 @@ func (e *eventObjectSender) SendDelete(ctx context.Context, eventObject EventObj
 	if err := eventObject.Validate(ctx); err != nil {
 		return errors.Wrap(ctx, err, "validate event failed")
 	}
-	if err := e.jsonSender.SendDelete(ctx, eventObject.SchemaID.EventTopic(e.branch), eventObject.ID); err != nil {
+	if err := e.jsonSender.SendDelete(ctx, eventObject.SchemaID.EventTopic(e.prefix), eventObject.ID); err != nil {
 		return errors.Wrapf(ctx, err, "send delete failed")
 	}
 	return nil

@@ -16,12 +16,12 @@ import (
 
 var _ = Describe("TopicsCreator", func() {
 	var topicsCreator cdb.TopicsCreator
-	var branch base.Branch
+	var prefix base.TopicPrefix
 
 	BeforeEach(func() {
-		branch = base.Branch("dev")
+		prefix = base.TopicPrefix("dev")
 		topicCreator := topic.NewTopicCreator(topic.NewTopicBuilder())
-		topicsCreator = cdb.NewTopicsCreator(topicCreator, branch)
+		topicsCreator = cdb.NewTopicsCreator(topicCreator, prefix)
 	})
 
 	Describe("CreateEventTopic", func() {
