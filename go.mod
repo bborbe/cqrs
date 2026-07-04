@@ -4,18 +4,18 @@ go 1.26.4
 
 require (
 	github.com/IBM/sarama v1.50.3
-	github.com/bborbe/collection v1.20.13
-	github.com/bborbe/errors v1.5.13
-	github.com/bborbe/k8s v1.14.3
+	github.com/bborbe/collection v1.20.15
+	github.com/bborbe/errors v1.5.15
+	github.com/bborbe/k8s v1.14.4
 	github.com/bborbe/kafka v1.25.1
-	github.com/bborbe/kv v1.21.2
-	github.com/bborbe/log v1.6.14
-	github.com/bborbe/parse v1.10.13
-	github.com/bborbe/run v1.9.28
-	github.com/bborbe/sentry v1.9.18
+	github.com/bborbe/kv v1.21.4
+	github.com/bborbe/log v1.6.15
+	github.com/bborbe/parse v1.10.15
+	github.com/bborbe/run v1.9.29
+	github.com/bborbe/sentry v1.9.20
 	github.com/bborbe/strimzi v1.8.5
-	github.com/bborbe/time v1.27.1
-	github.com/bborbe/validation v1.4.14
+	github.com/bborbe/time v1.27.3
+	github.com/bborbe/validation v1.4.15
 	github.com/getsentry/sentry-go v0.47.0
 	github.com/golang/glog v1.2.5
 	github.com/google/uuid v1.6.0

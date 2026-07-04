@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.6.1
+
+- Update bborbe/collection to v1.20.15
+- Update bborbe/errors to v1.5.15
+- Update bborbe/k8s to v1.14.4
+- Update bborbe/kv, log, parse, run, sentry, time, validation dependencies
+
 ## v0.6.0
 
 - feat: add `TopicPrefix` string type with `String()` method to `base` package (empty = no prefix)
