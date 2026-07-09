@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## v0.6.3
+
+- Bump bborbe/* dependencies (collection, errors, k8s, kafka, kv, log, parse, sentry, strimzi, time, http, math)
+- Bump go toolchain to 1.26.5 and structured-merge-diff to v6.4.2
+- Ignore no-fix advisory GO-2026-5932 in vulncheck/osv-scanner/trivy configs
+
 ## v0.6.2
 
 - Bump bborbe/collection, kafka, parse, run, strimzi, time, validation dependencies
