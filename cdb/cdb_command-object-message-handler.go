@@ -13,6 +13,7 @@ import (
 	"github.com/IBM/sarama"
 	"github.com/bborbe/errors"
 	libkafka "github.com/bborbe/kafka"
+	libtime "github.com/bborbe/time"
 	"github.com/golang/glog"
 
 	"github.com/bborbe/cqrs/base"
@@ -41,7 +42,7 @@ func NewCommandObjectMessageHandler(
 				Command:  command,
 			}
 
-			now := time.Now()
+			now := libtime.Now()
 			expireTime := commandObject.Command.RequestTime.Add(commandExpireDuration)
 			if now.After(expireTime) {
 				return errors.Wrapf(

@@ -5,7 +5,7 @@
 package base
 
 import (
-	"time"
+	libtime "github.com/bborbe/time"
 
 	"github.com/bborbe/cqrs/iam"
 )
@@ -80,7 +80,7 @@ func (c *commandCreator) NewCommandWithHeader(
 		Operation:   operation,
 		ID:          id,
 		Data:        data,
-		RequestTime: time.Now(),
+		RequestTime: libtime.Now(),
 		Header:      header,
 	}
 }
