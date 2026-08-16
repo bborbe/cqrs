@@ -1,25 +1,25 @@
 module github.com/bborbe/cqrs
 
-go 1.26.5
+go 1.26.6
 
 require (
 	github.com/IBM/sarama v1.60.1
-	github.com/bborbe/collection v1.20.19
+	github.com/bborbe/collection v1.20.20
 	github.com/bborbe/errors v1.5.17
-	github.com/bborbe/k8s v1.14.7
-	github.com/bborbe/kafka v1.25.5
-	github.com/bborbe/kv v1.21.7
-	github.com/bborbe/log v1.6.19
-	github.com/bborbe/parse v1.10.18
-	github.com/bborbe/run v1.9.32
+	github.com/bborbe/k8s v1.14.9
+	github.com/bborbe/kafka v1.25.7
+	github.com/bborbe/kv v1.21.9
+	github.com/bborbe/log v1.6.21
+	github.com/bborbe/parse v1.10.19
+	github.com/bborbe/run v1.9.34
 	github.com/bborbe/sentry v1.9.24
-	github.com/bborbe/strimzi v1.8.10
-	github.com/bborbe/time v1.27.7
+	github.com/bborbe/strimzi v1.8.12
+	github.com/bborbe/time v1.27.8
 	github.com/bborbe/validation v1.4.18
 	github.com/getsentry/sentry-go v0.48.0
 	github.com/golang/glog v1.2.5
 	github.com/google/uuid v1.6.0
-	github.com/onsi/ginkgo/v2 v2.32.0
+	github.com/onsi/ginkgo/v2 v2.32.1
 	github.com/onsi/gomega v1.42.1
 	github.com/prometheus/client_golang v1.24.1
 	k8s.io/apiextensions-apiserver v0.36.3
@@ -30,8 +30,8 @@ require (
 
 require (
 	github.com/Masterminds/semver/v3 v3.5.0 // indirect
-	github.com/bborbe/http v1.26.18 // indirect
-	github.com/bborbe/math v1.3.17 // indirect
+	github.com/bborbe/http v1.26.20 // indirect
+	github.com/bborbe/math v1.3.18 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
@@ -81,16 +81,16 @@ require (
 	github.com/x448/float16 v0.8.4 // indirect
 	go.yaml.in/yaml/v2 v2.4.4 // indirect
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
-	golang.org/x/crypto v0.54.0 // indirect
-	golang.org/x/mod v0.39.0 // indirect
-	golang.org/x/net v0.57.0 // indirect
+	golang.org/x/crypto v0.55.0 // indirect
+	golang.org/x/mod v0.40.0 // indirect
+	golang.org/x/net v0.58.0 // indirect
 	golang.org/x/oauth2 v0.36.0 // indirect
 	golang.org/x/sync v0.22.0 // indirect
 	golang.org/x/sys v0.47.0 // indirect
 	golang.org/x/term v0.45.0 // indirect
-	golang.org/x/text v0.40.0 // indirect
+	golang.org/x/text v0.41.0 // indirect
 	golang.org/x/time v0.15.0 // indirect
-	golang.org/x/tools v0.48.0 // indirect
+	golang.org/x/tools v0.49.0 // indirect
 	google.golang.org/protobuf v1.36.12 // indirect
 	gopkg.in/evanphx/json-patch.v4 v4.13.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
