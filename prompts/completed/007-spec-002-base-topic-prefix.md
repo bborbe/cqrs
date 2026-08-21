@@ -1,6 +1,6 @@
 ---
 status: completed
-spec: ["002"]
+spec: [002-topic-prefix-type]
 summary: Added base.TopicPrefix string type with String() method and TopicPrefixFromBranch bridge reproducing the legacy dev→develop/prod→master mapping
 execution_id: cqrs-exec-007-spec-002-base-topic-prefix
 dark-factory-version: v0.191.0
