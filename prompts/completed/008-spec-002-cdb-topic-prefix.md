@@ -1,6 +1,6 @@
 ---
 status: completed
-spec: ["002"]
+spec: [002-topic-prefix-type]
 summary: Replaced all base.Branch references with base.TopicPrefix throughout cdb/ package; removed internal dev/prod branch switch from BuildTopic; empty prefix yields unprefixed topic names for Octopus while non-empty prefix preserves legacy Quant/trading topic names
 execution_id: cqrs-exec-008-spec-002-cdb-topic-prefix
 dark-factory-version: v0.191.0

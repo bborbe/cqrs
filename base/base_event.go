@@ -41,7 +41,7 @@ func ParseEvent(ctx context.Context, value interface{}) (Event, error) {
 		}
 		return event, nil
 	default:
-		if value == nil || (reflect.ValueOf(value).Kind() == reflect.Ptr && reflect.ValueOf(value).IsNil()) {
+		if value == nil || (reflect.ValueOf(value).Kind() == reflect.Pointer && reflect.ValueOf(value).IsNil()) {
 			return nil, errors.Errorf(ctx, "value is nil")
 		}
 

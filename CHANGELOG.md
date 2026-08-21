@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+- chore: run `gofmt -w` last in the `format` target so golines' wrapping is normalized before the gofmt lint check
+- chore: bump golangci-lint to v2.13.1 (fixes staticcheck `buildir` panic on Go 1.27 AST) and errcheck to v1.20.0 (fixes `package "context" without types` on Go 1.27)
+- chore: use `reflect.Pointer` instead of deprecated `reflect.Ptr` alias in `base.Event` to satisfy the new govet `inline` check
+
 ## v0.6.7
 
 - update Go to 1.26.6 and update dependencies (fixes GO-2026-6179, GO-2026-6180)
