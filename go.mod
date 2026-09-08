@@ -1,6 +1,6 @@
 module github.com/bborbe/cqrs
 
-go 1.27.0
+go 1.27.1
 
 replace (
 	k8s.io/api v0.37.0 => k8s.io/api v0.36.4
@@ -88,7 +88,7 @@ require (
 	github.com/x448/float16 v0.8.4 // indirect
 	go.yaml.in/yaml/v2 v2.4.4 // indirect
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
-	golang.org/x/crypto v0.55.0 // indirect
+	golang.org/x/crypto v0.56.0 // indirect
 	golang.org/x/mod v0.40.0 // indirect
 	golang.org/x/net v0.58.0 // indirect
 	golang.org/x/oauth2 v0.36.0 // indirect
