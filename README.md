@@ -39,3 +39,4 @@ go install github.com/bborbe/cqrs@latest
 ## License
 
 BSD-2-Clause
+
