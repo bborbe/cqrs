@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+- chore: update Go to 1.27.3 and github.com/IBM/sarama to v1.61.1, github.com/bborbe/collection to v1.21.3, github.com/bborbe/errors to v1.6.3, github.com/bborbe/k8s to v1.14.23, github.com/bborbe/kafka to v1.28.4, github.com/bborbe/kv to v1.21.18, github.com/bborbe/log to v1.7.4, github.com/bborbe/parse to v1.12.4, github.com/bborbe/run to v1.11.2, github.com/bborbe/sentry to v1.10.5, github.com/bborbe/strimzi to v1.8.21, github.com/bborbe/time to v1.27.17, github.com/bborbe/validation to v1.5.5, github.com/getsentry/sentry-go to v0.50.0, github.com/onsi/ginkgo/v2 to v2.33.1, github.com/onsi/gomega to v1.44.0, github.com/prometheus/client_golang to v1.25.0, k8s.io/apiextensions-apiserver to v0.38.0-alpha.2, k8s.io/apimachinery to v0.38.0-alpha.2, k8s.io/client-go to v0.38.0-alpha.2
+
 ## v0.6.12
 
 - fix: bump `osv-scanner` to v2.6.0 and `golang.org/x/net` to v0.60.0 so the Linux vulnerability gates stop failing. v2.3.1 pins `golang.org/x/tools` v0.38.0, whose SSA builder aborts with `unexpected expr: *ast.KeyValueExpr` on the promoted-field composite-literal key Go 1.27 permits in the Linux stdlib, so a repo on the old pin passes locally on darwin and fails only in Linux CI. `x/net` v0.58.0 carries `GO-2026-6603/6610/6611/6612/6617`, which fail both `vulncheck` and `trivy`.
