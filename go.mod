@@ -12,17 +12,17 @@ replace (
 require (
 	github.com/IBM/sarama v1.61.1
 	github.com/bborbe/collection v1.21.3
-	github.com/bborbe/errors v1.6.3
-	github.com/bborbe/k8s v1.14.23
-	github.com/bborbe/kafka v1.28.4
-	github.com/bborbe/kv v1.21.18
-	github.com/bborbe/log v1.7.4
+	github.com/bborbe/errors v1.6.4
+	github.com/bborbe/k8s v1.14.24
+	github.com/bborbe/kafka v1.28.6
+	github.com/bborbe/kv v1.21.19
+	github.com/bborbe/log v1.7.5
 	github.com/bborbe/parse v1.12.4
 	github.com/bborbe/run v1.11.2
-	github.com/bborbe/sentry v1.10.5
-	github.com/bborbe/strimzi v1.8.21
-	github.com/bborbe/time v1.27.17
-	github.com/bborbe/validation v1.5.5
+	github.com/bborbe/sentry v1.10.6
+	github.com/bborbe/strimzi v1.8.22
+	github.com/bborbe/time v1.27.18
+	github.com/bborbe/validation v1.5.6
 	github.com/getsentry/sentry-go v0.50.0
 	github.com/golang/glog v1.2.5
 	github.com/google/uuid v1.6.0
@@ -37,8 +37,8 @@ require (
 
 require (
 	github.com/Masterminds/semver/v3 v3.5.0 // indirect
-	github.com/bborbe/http v1.26.30 // indirect
-	github.com/bborbe/math v1.4.15 // indirect
+	github.com/bborbe/http v1.26.31 // indirect
+	github.com/bborbe/math v1.4.16 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
