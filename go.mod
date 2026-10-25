@@ -12,13 +12,13 @@ replace (
 require (
 	github.com/IBM/sarama v1.61.1
 	github.com/bborbe/collection v1.21.4
-	github.com/bborbe/errors v1.6.4
+	github.com/bborbe/errors v1.6.5
 	github.com/bborbe/k8s v1.14.24
-	github.com/bborbe/kafka v1.29.0
+	github.com/bborbe/kafka v1.29.1
 	github.com/bborbe/kv v1.21.19
 	github.com/bborbe/log v1.7.5
 	github.com/bborbe/parse v1.12.4
-	github.com/bborbe/run v1.11.3
+	github.com/bborbe/run v1.11.4
 	github.com/bborbe/sentry v1.10.6
 	github.com/bborbe/strimzi v1.8.22
 	github.com/bborbe/time v1.27.18
