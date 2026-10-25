@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+- chore: update github.com/bborbe/errors to v1.6.5, github.com/bborbe/kafka to v1.29.1, github.com/bborbe/run to v1.11.4
+
 ## v0.6.14
 
 - chore: update github.com/bborbe/collection to v1.21.4, github.com/bborbe/errors to v1.6.4, github.com/bborbe/k8s to v1.14.24, github.com/bborbe/kafka to v1.29.0, github.com/bborbe/kv to v1.21.19, github.com/bborbe/log to v1.7.5, github.com/bborbe/run to v1.11.3, github.com/bborbe/sentry to v1.10.6, github.com/bborbe/strimzi to v1.8.22, github.com/bborbe/time to v1.27.18, github.com/bborbe/validation to v1.5.6, sigs.k8s.io/structured-merge-diff/v7 to v7.0.1
