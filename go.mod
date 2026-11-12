@@ -1,6 +1,6 @@
 module github.com/bborbe/cqrs
 
-go 1.27.3
+go 1.27.4
 
 replace (
 	k8s.io/api v0.37.0 => k8s.io/api v0.36.4
