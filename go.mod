@@ -29,7 +29,7 @@ require (
 	github.com/onsi/ginkgo/v2 v2.34.0
 	github.com/onsi/gomega v1.44.0
 	github.com/prometheus/client_golang v1.25.0
-	k8s.io/apiextensions-api v0.38.0-beta.0
+	k8s.io/apiextensions-apiserver v0.38.0-beta.0
 	k8s.io/apimachinery v0.38.0-beta.0
 	k8s.io/client-go v0.38.0-beta.0
 	sigs.k8s.io/structured-merge-diff/v7 v7.0.1
@@ -91,7 +91,7 @@ require (
 	gopkg.in/evanphx/json-patch.v4 v4.13.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	k8s.io/api v0.38.0-beta.0 // indirect
-	k8s.io/apiextensions-apiserver v0.38.0-beta.0 // indirect
+	k8s.io/apiextensions-api v0.38.0-beta.0 // indirect
 	k8s.io/klog/v2 v2.140.0 // indirect
 	k8s.io/kube-openapi v0.0.0-20261104182252-5bee61fc5225 // indirect
 	k8s.io/utils v0.0.0-20261023123148-ca04ba58ecab // indirect

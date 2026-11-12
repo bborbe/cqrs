@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+- fix: keep `k8s.io/apiextensions-apiserver` as the schema connectors' import path rather than importing `k8s.io/apiextensions-api` directly
 - chore: update github.com/bborbe/collection to v1.21.6, github.com/bborbe/errors to v1.6.6, github.com/bborbe/k8s to v1.14.33, github.com/bborbe/kafka to v1.29.13, github.com/bborbe/kv to v1.21.29, github.com/bborbe/log to v1.7.8, github.com/bborbe/parse to v1.12.6, github.com/bborbe/run to v1.11.11, github.com/bborbe/sentry to v1.10.7, github.com/bborbe/strimzi to v1.8.24, github.com/bborbe/time to v1.27.27, github.com/bborbe/validation to v1.5.9, github.com/onsi/ginkgo/v2 to v2.34.0, k8s.io/apimachinery to v0.38.0-beta.0, k8s.io/client-go to v0.38.0-beta.0
 
 ## v0.6.15
