@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+- chore: remove stale vulnerability ignore IDs that no longer apply
+- ci: install Trivy from a pinned release tarball with sha256 verification (apt-key is gone from Ubuntu 26.04)
+
 ## v0.6.16
 
 - fix: keep `k8s.io/apiextensions-apiserver` as the schema connectors' import path rather than importing `k8s.io/apiextensions-api` directly
